@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>สนับสนุน Lumina</title>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { background: #faf9f6; color: #1a1c1a; font-family: 'Anuphan', sans-serif; }
+  .serif { font-family: 'Anuphan', sans-serif; font-weight: 600; }
+  .gold-btn { background: linear-gradient(135deg, #745b00 0%, #d4af37 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 4px 20px rgba(116,91,0,0.2); color: white; transition: all 0.2s; }
+  .gold-btn:hover { box-shadow: 0 8px 30px rgba(116,91,0,0.3); transform: translateY(-1px); }
+  .glass-nav { backdrop-filter: blur(16px); background: rgba(250,249,246,0.9); }
+  .tip-opt { border: 2px solid #e8e4da; border-radius: 16px; padding: 20px 14px; cursor: pointer; transition: all 0.2s; text-align: center; }
+  .tip-opt:hover { border-color: #d4af37; background: #fffef9; }
+  .tip-opt.selected { border-color: #d4af37; background: linear-gradient(135deg, rgba(116,91,0,0.04), rgba(212,175,55,0.08)); }
+  .lang-btn { transition: all 0.2s; padding-bottom: 2px; font-size: 12px; letter-spacing: 0.1em; }
+  .lang-btn.active { color: #745b00; border-bottom: 2px solid #d4af37; }
+</style>
+</head>
+<body>
+
+<nav class="fixed top-0 w-full z-50 glass-nav border-b border-amber-100/40 shadow-sm">
+  <div class="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 hover:opacity-75 transition-opacity">
+      <span class="material-symbols-outlined text-amber-700" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24">auto_awesome</span>
+      <span class="serif text-xl italic text-amber-800">Lumina</span>
+    </a>
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 text-stone-600 uppercase tracking-widest">
+        <button class="lang-btn active" onclick="setLang('th')">TH</button>
+        <span class="opacity-20 text-xs">|</span>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <span class="opacity-20 text-xs">|</span>
+        <button class="lang-btn" onclick="setLang('jp')">JP</button>
+      </div>
+      <a href="/" class="text-sm text-stone-600 hover:text-amber-700 transition-colors" id="t-back">← กลับหน้าหลัก</a>
+    </div>
+  </div>
+</nav>
+
+<main class="pt-24 pb-32">
+  <div class="max-w-xl mx-auto px-6">
+
+    <div class="text-center mb-12">
+      <span class="text-5xl block mb-5">☕</span>
+      <h1 class="serif text-4xl italic mb-4 text-stone-800" id="t-title">สนับสนุน Lumina</h1>
+      <p class="text-base text-stone-600 leading-relaxed max-w-md mx-auto" id="t-desc">
+        ฟังก์ชันหลักของ Lumina จะเปิดให้ใช้งานฟรีตลอดไป — แต่ถ้ามันช่วยให้คุณมองอะไรได้ชัดขึ้น ค่ากาแฟสักแก้วก็ทำให้เราพัฒนาเว็บให้ดียิ่งขึ้นต่อๆ ไปได้
+      </p>
+    </div>
+
+    <!-- Amount selector -->
+    <div class="grid grid-cols-3 gap-3 mb-8" id="amounts-th">
+      <div class="tip-opt" onclick="selectAmount('59','กาแฟโลคอล',this)">
+        <p class="serif text-2xl italic text-amber-800 mb-1">฿59</p>
+        <p class="text-sm text-stone-600" id="t-a1">กาแฟโลคอล</p>
+      </div>
+      <div class="tip-opt selected" onclick="selectAmount('129','กาแฟเงือกเขียว ☕',this)">
+        <p class="serif text-2xl italic text-amber-800 mb-1">฿129</p>
+        <p class="text-sm text-stone-600" id="t-a2">กาแฟเงือกเขียว ☕</p>
+      </div>
+      <div class="tip-opt" onclick="selectAmount('249','ขอบพระคุณมากครับบบ',this)">
+        <p class="serif text-2xl italic text-amber-800 mb-1">฿249</p>
+        <p class="text-sm text-stone-600" id="t-a3">ขอบพระคุณมากครับบบ</p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-3xl p-8 shadow-[0_4px_40px_rgba(26,28,26,0.06)] mb-6">
+
+      <!-- PromptPay -->
+      <div class="mb-8">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0">
+            <span class="font-bold text-blue-600 text-xs">QR</span>
+          </div>
+          <div>
+            <h2 class="serif text-lg italic text-stone-800">PromptPay</h2>
+            <p class="text-xs text-stone-600" id="t-pp-sub">ธนกฤต สวนสัน · กรุงไทย</p>
+          </div>
+        </div>
+        <div class="bg-stone-50 rounded-2xl p-5 text-center">
+          <img src="/promptpay-qr.jpg" alt="PromptPay QR" class="w-52 h-auto mx-auto rounded-xl mb-3 shadow-sm"/>
+          <p class="text-sm text-stone-700" id="t-pp-scan">สแกน QR เพื่อโอน PromptPay</p>
+          <p class="text-sm font-semibold text-stone-600 mt-0.5">ธนกฤต สวนสัน</p>
+          <p id="selected-amount" class="text-xs text-amber-700 mt-1.5 font-medium">฿129 — กาแฟเงือกเขียว ☕</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4 my-5">
+        <div class="flex-1 h-px bg-stone-100"></div>
+        <span class="text-xs text-stone-700 tracking-widest uppercase" id="t-or">หรือ</span>
+        <div class="flex-1 h-px bg-stone-100"></div>
+      </div>
+
+      <!-- Ko-fi -->
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center flex-shrink-0">
+            <span class="text-lg">☕</span>
+          </div>
+          <div>
+            <h2 class="serif text-lg italic text-stone-800">Ko-fi</h2>
+            <p class="text-xs text-stone-600" id="t-kofi-sub">Credit card · PayPal · รองรับทุกประเทศ</p>
+          </div>
+        </div>
+        <a href="https://ko-fi.com/tanakitto31" target="_blank"
+          class="gold-btn flex items-center justify-center gap-2 py-4 rounded-2xl font-semibold text-sm tracking-wide">
+          <span>☕</span>
+          <span id="t-kofi-btn">Support on Ko-fi</span>
+          <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24">open_in_new</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- What support does -->
+    <div class="bg-amber-50/50 rounded-3xl p-7 mb-6">
+      <h3 class="serif text-lg italic text-stone-800 mb-4" id="t-what-title">การสนับสนุนของคุณช่วยอะไร</h3>
+      <div class="space-y-3">
+        <div class="flex items-start gap-3">
+          <span class="text-amber-600 flex-shrink-0">✦</span>
+          <p class="text-base text-stone-700 leading-relaxed" id="t-w1">ค่า Claude API — ทุก session มีต้นทุน และเราตั้งใจให้มันฟรีสำหรับทุกคน</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-amber-600 flex-shrink-0">✦</span>
+          <p class="text-base text-stone-700 leading-relaxed" id="t-w2">ค่า domain lumina-oracle.com และ hosting บน Netlify</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-amber-600 flex-shrink-0">✦</span>
+          <p class="text-base text-stone-700 leading-relaxed" id="t-w3">พัฒนา mode ใหม่ที่กำลังมา — I Ching, Omikuji, Celtic Cross</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center py-4">
+      <p class="text-base text-stone-600 leading-relaxed max-w-sm mx-auto" id="t-honest">
+        Lumina สร้างด้วย Claude AI โดย Anthropic — เราไม่ปิดบังสิ่งนี้ เพราะเราเชื่อว่า intention ของคุณสำคัญกว่าเครื่องมือที่ใช้
+      </p>
+      <a href="/" class="inline-block mt-5 text-sm text-amber-700 underline underline-offset-2 hover:text-amber-800" id="t-return">กลับไปใช้ Lumina →</a>
+    </div>
+  </div>
+</main>
+
+<script>
+const T = {
+  th: {
+    't-back': '← กลับหน้าหลัก',
+    't-title': 'สนับสนุน Lumina',
+    't-desc': 'ฟังก์ชันหลักของ Lumina จะเปิดให้ใช้งานฟรีตลอดไป — แต่ถ้ามันช่วยให้คุณมองอะไรได้ชัดขึ้น ค่ากาแฟสักแก้วก็ทำให้เราพัฒนาเว็บให้ดียิ่งขึ้นต่อๆ ไปได้',
+    't-a1': 'กาแฟโลคอล', 't-a2': 'กาแฟเงือกเขียว ☕', 't-a3': 'ขอบพระคุณมากครับบบ',
+    't-pp-sub': 'ธนกฤต สวนสัน · กรุงไทย', 't-pp-scan': 'สแกน QR เพื่อโอน PromptPay',
+    't-or': 'หรือ', 't-kofi-sub': 'Credit card · PayPal · รองรับทุกประเทศ', 't-kofi-btn': 'Support on Ko-fi',
+    't-what-title': 'การสนับสนุนของคุณช่วยอะไร',
+    't-w1': 'ค่า Claude API — ทุก session มีต้นทุน และเราตั้งใจให้มันฟรีสำหรับทุกคน',
+    't-w2': 'ค่า domain lumina-oracle.com และ hosting บน Netlify',
+    't-w3': 'พัฒนา mode ใหม่ที่กำลังมา — I Ching, Omikuji, Celtic Cross',
+    't-honest': 'Lumina สร้างด้วย Claude AI โดย Anthropic — เราไม่ปิดบังสิ่งนี้ เพราะเราเชื่อว่า intention ของคุณสำคัญกว่าเครื่องมือที่ใช้',
+    't-return': 'กลับไปใช้ Lumina →',
+  },
+  en: {
+    't-back': '← Back to home',
+    't-title': 'Support Lumina',
+    't-desc': "Lumina's core features will always be free — but if it helped you see things more clearly, a coffee keeps us developing and keeps it free for everyone.",
+    't-a1': 'Local coffee', 't-a2': 'Specialty coffee ☕', 't-a3': 'You\'re amazing, thank you!',
+    't-pp-sub': 'Thanakrit Suansan · Krungthai Bank', 't-pp-scan': 'Scan QR to pay via PromptPay',
+    't-or': 'or', 't-kofi-sub': 'Credit card · PayPal · Worldwide', 't-kofi-btn': 'Support on Ko-fi',
+    't-what-title': 'What your support does',
+    't-w1': 'Claude API costs — every session has a cost, and we want to keep it free for everyone.',
+    't-w2': 'Domain lumina-oracle.com and hosting on Netlify.',
+    't-w3': 'Build new modes coming soon — I Ching, Omikuji, Celtic Cross.',
+    't-honest': 'Lumina is built with Claude AI by Anthropic — we don\'t hide this. We believe your intention matters more than the tool.',
+    't-return': 'Back to Lumina →',
+  },
+  jp: {
+    't-back': '← ホームに戻る',
+    't-title': 'Luminaをサポート',
+    't-desc': 'Luminaのコア機能は永遠に無料です — でも、もし物事をより明確に見る助けになったなら、コーヒー1杯の値段でLuminaの発展を支援できます。',
+    't-a1': 'ローカルコーヒー', 't-a2': 'スペシャルティコーヒー ☕', 't-a3': '本当にありがとうございます！',
+    't-pp-sub': 'Thanakrit Suansan · Krungthai Bank', 't-pp-scan': 'QRをスキャンしてPromptPayで支払い',
+    't-or': 'または', 't-kofi-sub': 'クレジットカード · PayPal · 全世界対応', 't-kofi-btn': 'Ko-fiでサポート',
+    't-what-title': 'サポートで何ができるか',
+    't-w1': 'Claude APIのコスト — すべてのセッションにはコストがかかり、誰にでも無料で提供したいと思っています。',
+    't-w2': 'ドメインlumina-oracle.comとNetlifyのホスティング。',
+    't-w3': '新しいモードの開発 — 易経、おみくじ、ケルティッククロス。',
+    't-honest': 'LuminaはAnthropicのClaude AIで構築されています — これを隠しません。あなたの意図が使うツールよりも重要だと信じているからです。',
+    't-return': 'Luminaに戻る →',
+  }
+};
+
+let currentAmountText = '฿129 — กาแฟเงือกเขียว ☕';
+
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  const c = T[lang];
+  for (const [id, text] of Object.entries(c)) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  }
+  localStorage.setItem('lumina_lang', lang);
+}
+
+function selectAmount(amount, label, el) {
+  document.querySelectorAll('.tip-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('selected-amount').textContent = `${amount.startsWith('฿') ? '' : '฿'}${amount} — ${label}`;
+}
+
+// Restore lang
+const saved = localStorage.getItem('lumina_lang') || 'th';
+if (saved !== 'th') setLang(saved);
+</script>
+</body>
+</html>
